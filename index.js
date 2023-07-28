@@ -7,12 +7,6 @@ const prompt = require('prompt-sync')();
 2,0; 2,1; 2,2
 
 */
-/*
-running checkIfWinner function after each player makes a move; if there's a winner end game
-*/
-// const checkIfWinner = board => {
-
-// }
 
 let board = [
     ["   ", "   ", "   "],
@@ -39,7 +33,6 @@ const playerMove = (playerTurn) => {
         if (!validInputChecker(playerInput)) {
             console.log("Invalid input")
             continue
-
         }
         let playerChoice = playerInput.split(",")
 
@@ -80,7 +73,6 @@ const checkWin = board => {
         return true; // Column win
       }
     }
-  
     // Check diagonals
     if (board[0][0] !== '   ' && board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
       return true; // Diagonal from top-left to bottom-right win
@@ -88,7 +80,6 @@ const checkWin = board => {
     if (board[0][2] !== '   ' && board[0][2] === board[1][1] && board[1][1] === board[2][0]) {
       return true; // Diagonal from top-right to bottom-left win
     }
-  
     // No win found
     return false;
   }
@@ -98,7 +89,6 @@ const checkWin = board => {
   const main = () => {
     let turnCount=0, player1Score = 0, player2Score = 0, playerTurn = "O"
     console.log(`Welcome to tic tac toe!`)
-
     do {
         playerTurn = (playerTurn === 'X' ? 'O' : 'X')
         displayBoard(board)
@@ -112,7 +102,6 @@ const checkWin = board => {
         displayBoard(board)
         console.log(`Player ${playerTurn} won the game. ${playerTurn}'s score = ${player1Score} and ${playerTurn === 'X' ? 'O' : 'X'}'s score = ${player2Score}`)
     }
-
   }
   main()
 
