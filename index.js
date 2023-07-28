@@ -31,19 +31,42 @@ const displayBoard = board => {
 // displayBoard(board)
 console.log(`Welcome to tic tac toe!`)
 displayBoard(board) // displaying the empty board
-let xCord, yCord
-// we need to make sure player choice is not already taken
-do {
-    let player1input = prompt("Player 1's turn: (e.g 1,1)")
-    let player1Choice = player1input.split(",")
-    xCord = player1Choice[0]
-    yCord = player1Choice[1]
-    // if (board[xCord][yCord] == " ") {
-    //     board[xCord][yCord] = " X"
-    // }
-} while(board[xCord][yCord] != " ")
 
-board[xCord][yCord] = " X "
+const playerMove = () => {
+    let xCord, yCord
+    // we need to make sure player choice is not already taken
+    do {
+        let player1input = prompt("Player 1's turn: (e.g 1,1)")
+        if (!validInputChecker(player1input)) {
+            console.log("Invalid input")
+            continue
+
+        }
+        let player1Choice = player1input.split(",")
+
+        xCord = player1Choice[0]
+        yCord = player1Choice[1]
+        // if (board[xCord][yCord] == " ") {
+        //     board[xCord][yCord] = " X"
+        // }
+    } while(board[xCord][yCord] != " ")
+
+    board[xCord][yCord] = " X "
+}
+
+const validInputChecker = str => {
+    if (str.length !== 3) {
+        return false
+    } else if (str.charAt(1) !== "," ) {
+        return false
+    } else if ((isNaN(str.charAt(0))) || (isNaN(str.charAt(2)))) {
+        return false
+    } else if ((str.charAt(0) < 0) || (str.charAt(2) > 2)) {
+        return false
+    }
+    return true
+}
+
 displayBoard(board)
 
 const checkWin = board => {
